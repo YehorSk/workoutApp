@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     ArrayList<workoutModel> workouts = new ArrayList<>();
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         setUpWorkouts();
 
-        workoutAdapter adapter = new workoutAdapter(this, workouts);
+        workoutAdapter adapter = new workoutAdapter(this, workouts,this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,5 +37,12 @@ public class MainActivity extends AppCompatActivity {
         workouts.add(new workoutModel("ABS","beginner",R.drawable.abs));
         workouts.add(new workoutModel("Whole Body","Advanced",R.drawable.workout));
         workouts.add(new workoutModel("WarmUp","beginner",R.drawable.warmup));
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this,TimerActivity.class);
+        intent.putExtra("name",workouts.get(position).getName());
+        startActivity(intent);
     }
 }

@@ -13,12 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class workoutAdapter extends RecyclerView.Adapter<workoutAdapter.MyViewHolder> {
+
+    private final RecyclerViewInterface recyclerViewInterface;
     Context context;
     ArrayList<workoutModel> workouts;
 
-    public  workoutAdapter(Context context, ArrayList<workoutModel> workouts){
+    public  workoutAdapter(Context context, ArrayList<workoutModel> workouts, RecyclerViewInterface recyclerViewInterface){
         this.context = context;
         this.workouts = workouts;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
@@ -26,7 +29,7 @@ public class workoutAdapter extends RecyclerView.Adapter<workoutAdapter.MyViewHo
     public workoutAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.workout_item_row,parent,false);
-        return new workoutAdapter.MyViewHolder(view);
+        return new workoutAdapter.MyViewHolder(view,recyclerViewInterface);
     }
 
     @Override
@@ -47,11 +50,23 @@ public class workoutAdapter extends RecyclerView.Adapter<workoutAdapter.MyViewHo
         TextView name;
         TextView difficulty;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView,RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             name = itemView.findViewById(R.id.cardTitle);
             difficulty = itemView.findViewById(R.id.cardDifficulty);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }
