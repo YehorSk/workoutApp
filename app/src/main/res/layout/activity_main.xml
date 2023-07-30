@@ -16,11 +16,12 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title"
-        android:textSize="38sp"
-        android:textColor="@color/dark_bg"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@+id/guideline3"
@@ -33,14 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.98" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/workout_list"
