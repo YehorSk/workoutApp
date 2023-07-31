@@ -7,47 +7,50 @@
     android:layout_marginBottom="10dp"
     android:background="@drawable/myrect"
     android:clipToOutline="true"
-    android:elevation="2dp"
-    android:padding="0dp">
+    android:elevation="2dp">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/warmup" />
+        app:srcCompat="@drawable/exercise" />
 
     <TextView
-        android:id="@+id/cardTitle"
-        android:layout_width="0dp"
+        android:id="@+id/exerciseName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:text="TextView"
         android:layout_marginTop="10dp"
-        android:text="Title"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/cardDifficulty"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="Type of exercise"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
+    <TextView
+        android:id="@+id/timeExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 minutes"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseName" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

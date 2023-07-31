@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 public class TimerActivity extends AppCompatActivity {
 
-    private int seconds = 120;
+    private int seconds;
+    private int totalSeconds;
     private boolean running;
     private boolean wasRunning;
     private TextView time;
@@ -26,6 +27,8 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         setUI();
+        totalSeconds = Integer.parseInt(getIntent().getStringExtra("time"))*60;
+        seconds = totalSeconds;
         if(savedInstanceState != null){
             seconds = savedInstanceState.getInt("seconds");
             running = savedInstanceState.getBoolean("running");
@@ -45,6 +48,7 @@ public class TimerActivity extends AppCompatActivity {
         super.onPause();
         wasRunning = running;
         running = false;
+
     }
     @Override
     protected void onResume(){
@@ -55,7 +59,7 @@ public class TimerActivity extends AppCompatActivity {
     }
     protected void startTimer() {
         final Handler handler = new Handler();
-        final int totalSeconds = seconds;
+
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -81,7 +85,8 @@ public class TimerActivity extends AppCompatActivity {
     }
     public void resetTimer(View view){
         running = false;
-        seconds = 120;
+        seconds = totalSeconds;
+        pb.setProgress(seconds);
     }
 
     public void setUI(){
