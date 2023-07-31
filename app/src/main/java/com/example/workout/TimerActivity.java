@@ -17,6 +17,7 @@ public class TimerActivity extends AppCompatActivity {
     private boolean running;
     private boolean wasRunning;
     private TextView time;
+    private TextView exerciseName;
     private ImageButton startBtn;
     private ImageButton stopBtn;
     private ImageButton resetBtn;
@@ -28,6 +29,7 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
         setUI();
         totalSeconds = Integer.parseInt(getIntent().getStringExtra("time"))*60;
+        exerciseName.setText(getIntent().getStringExtra("name"));
         seconds = totalSeconds;
         if(savedInstanceState != null){
             seconds = savedInstanceState.getInt("seconds");
@@ -86,7 +88,7 @@ public class TimerActivity extends AppCompatActivity {
     public void resetTimer(View view){
         running = false;
         seconds = totalSeconds;
-        pb.setProgress(seconds);
+        pb.setProgress(totalSeconds);
     }
 
     public void setUI(){
@@ -94,8 +96,9 @@ public class TimerActivity extends AppCompatActivity {
         stopBtn  = findViewById(R.id.stopBtn);
         resetBtn = findViewById(R.id.resetBtn);
         time = findViewById(R.id.time);
+        exerciseName = findViewById(R.id.exerciseName);
         pb = findViewById(R.id.progressBar);
-        pb.setMax(seconds);
-        pb.setProgress(seconds);
+        pb.setMax(totalSeconds);
+        pb.setProgress(totalSeconds);
     }
 }
